@@ -1,4 +1,6 @@
 __author__ = '31351'
+#!/usr/bin/env python
+# encoding: utf-8
 
 from math import sqrt
 N = 100000
