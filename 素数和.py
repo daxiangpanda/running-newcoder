@@ -1,14 +1,41 @@
 __author__ = '31351'
 #!/usr/bin/env python
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 
-from math import sqrt
-N = 100000
-prime = [p for p in range(2, N) if 0 not in [p % d for d in range(2, int(sqrt(p))+1)]]
-sum = [i+j for i in prime for j in prime]
-num = 0
-for i in range(100000):
-    if i in sum:
-        num+=1
-print num
-print len(sum)
+def prime(n):
+    a = [0]*(n+1)
+    primes = [0]*(n+1)
+    len=0
+    for i in range(2,n+1):
+        if a[i] == 0:
+            primes[len] = i
+            len = len+1
+            for j in range(2*i,n+1,i):
+                a[j] = 1
+    return primes
+N=10000
+primes = prime(N)
+# print primes
+print len(primes)
+count = [0]*(N*2)
+# print count
+print len(count)
+print count
+for i in range(0,N):
+    for j in range(i+1,N):
+        if primes[i] == 0 or primes[j] == 0:
+            continue
+        elif primes[i]+primes[j] > N:
+            break
+        else:
+            count[primes[i]+primes[j]]+=1
+print count
+output = []
+while True:
+    a = raw_input()
+    if a != '':
+        output.append(count[int(a)])
+    else:
+        break
+for i in output:
+    print i
